@@ -10,7 +10,8 @@ import React, { Component } from 'react';
 import { createUser, loginUser, 
           verifyUser, destroyProfile, 
           putProfile, getSavedTrails,
-          destroySavedTrail
+          destroySavedTrail,
+          getAllReviews, destroyReview
         } from './services/api_helper';
 import ProfileContainer from './components/ProfileContainer';
 import ProfilePage from './components/ProfilePage';
@@ -23,7 +24,8 @@ class App extends Component {
 
     this.state = {
       currentUser: null,
-      userSavedTrails: null
+      userSavedTrails: null,
+      allTrailsReviews: null
     }
   }
 
@@ -90,10 +92,23 @@ class App extends Component {
     })
     this.props.history.push(`/profile/${userId}`)
   }
+  allReviews = async () => {
+    const allTrailsReviews = await getAllReviews()
+    console.log(allTrailsReviews)
+    this.setState({
+      allTrailsReviews
+    })
+  }
+
+  deleteReview = async (reviewId) => {
+     await destroyReview(reviewId)
+     this.allReviews();
+  }
 
   componentDidMount() {
     this.handleVerify();
     this.getUsersTrails();
+    this.allReviews();
   }
 
 
@@ -142,6 +157,8 @@ class App extends Component {
         <Route path="/trails" render={() => (
           <TrailsContainer  userId={this.state.currentUser.id} 
                             userSavedTrails={this.state.userSavedTrails}
+                            reviews={this.state.allTrailsReviews}
+                            deleteReview={this.deleteReview}
           />
         )} />
       </div>

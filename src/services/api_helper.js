@@ -62,6 +62,7 @@ export const bulkPostTrails = async (trails) => {
 export const getTrail = async (trailId) => {
     // console.log(trailId)
     const resp = await api.get(`/trails/${trailId}`);
+    console.log(resp.data)
     return resp.data;
 }
 
@@ -71,3 +72,13 @@ export const postSavedTrails = async (data) => {
 
 
 
+//====================== Reviews ==========================
+
+export const getAllReviews = async (id) => {
+    const resp = await api.get(`/review/all`);
+    return resp.data;
+}
+
+export const destroyReview = async (reviewId) => {
+    await api.delete(`/review/${reviewId}`)
+}

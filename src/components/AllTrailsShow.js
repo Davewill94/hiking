@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 
 function AllTrailsShow(props) {
-    console.log(props.allTrails)
     return(
         <div>
             {props.allTrails.map((trail, idx) => (

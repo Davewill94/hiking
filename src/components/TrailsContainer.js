@@ -121,6 +121,7 @@ class TrailsContainer extends Component {
         await postSavedTrails(savedTrailData);
     }
 
+
     componentDidMount() {
         this.getLocation();
     }
@@ -145,6 +146,9 @@ class TrailsContainer extends Component {
                                         trailId={props.match.params.id}
                                         flag={props.match.params.flag}
                                         saveTrail={this.saveTrail}
+                                        reviews={this.props.reviews}
+                                        userId={this.props.userId}
+                                        deleteReview={this.props.deleteReview}
                     />
                 )} />
                 <Route path="/trails/:id/unsaved" render={(props) => (
