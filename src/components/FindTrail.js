@@ -6,7 +6,7 @@ class FindTrail extends Component {
 
         this.state = {
             location: '',
-            range: 5
+            range: 10
         }
     }
 

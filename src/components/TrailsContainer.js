@@ -48,7 +48,7 @@ class TrailsContainer extends Component {
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
         const resp = await axios.get(
-            `http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MAP_KEY}&location=${latitude},${longitude}`
+            `https://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MAP_KEY}&location=${latitude},${longitude}`
         )
         let currentLocation = `${resp.data.results[0].locations[0].adminArea5}, ${resp.data.results[0].locations[0].adminArea3}`
 
@@ -62,7 +62,7 @@ class TrailsContainer extends Component {
    
     newLatLng = async (city) => {
         const resp = await axios.get(
-           `http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAP_KEY}&location=${city}`
+           `https://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAP_KEY}&location=${city}`
         )
         return resp
     }

@@ -100,10 +100,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path='/'>
-          <HomePage />
-        </Route> 
-        
+        {!this.state.currentUser && 
+          <Route exact path='/'>
+            <HomePage currentUser={this.state.currentUser}/>
+          </Route> 
+        }
         {this.state.currentUser ?
         <> 
           <Header currentUser={this.state.currentUser} getSaved={this.getUsersTrails}/> 
@@ -113,7 +114,8 @@ class App extends Component {
           </div> 
         </>
           :
-          <Link to='/login'><button>Login/Register</button></Link>
+          <></>
+          // <Link to='/login'><button>Login/Register</button></Link>
         }
 
         <Route path="/login" render={() => (
