@@ -140,24 +140,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header currentUser={this.state.currentUser} 
+                getSaved={this.getUsersTrails}
+                handleLogout={this.handleLogout}
+        /> 
+
         {!this.state.currentUser && 
           <Route exact path='/'>
             <HomePage currentUser={this.state.currentUser}/>
           </Route> 
         }
-        {this.state.currentUser ?
-        <> 
-          <Header currentUser={this.state.currentUser} getSaved={this.getUsersTrails}/> 
-          <div>
-            <p>Hello {this.state.currentUser.username}</p>
-            <button onClick={this.handleLogout}>Logout</button>
-          </div> 
-        </>
-          :
-          <></>
-          // <Link to='/login'><button>Login/Register</button></Link>
-        }
-
         <Route path="/login" render={() => (
           <Login handleLogin={this.handleLogin}/>
         )} />

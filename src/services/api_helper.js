@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "https://peaceful-wildwood-15287.herokuapp.com"
+    baseURL: "https://peaceful-wildwood-15287.herokuapp.com/"
 })
 // https://peaceful-wildwood-15287.herokuapp.com
 // "http://localhost:3001"

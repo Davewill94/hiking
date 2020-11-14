@@ -5,7 +5,7 @@ class ReviewEditForm extends Component {
         super(props);
 
         this.state = {
-            rating: 0,
+            rating: 1,
             review: '',
             userId: '',
             trailId: '',
@@ -41,7 +41,7 @@ class ReviewEditForm extends Component {
                 <lable for="review">Thoughts?: </lable>
                 <input type="text" name="review" value={this.state.review} onChange={this.handleChange} />
                 <lable for='rating'>Rating (0 to 5):</lable>
-                <input type="number" name="rating" value={this.state.rating} onChange={this.handleChange} />
+                <input type="number" name="rating" min="1" max="5" value={this.state.rating} onChange={this.handleChange} />
                 <input type="submit" value="Post Review" />
             </form>
         )

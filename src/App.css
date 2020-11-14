@@ -1,38 +1,134 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  background-color: #b5cac1;
+}
+#homepage {
+    height: 60vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+  height: 60vh;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+::placeholder {
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+#header {
+  background: #044f64;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #f8dab4;
+  width: 100vw;
+  height: 80px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.header-nav {
+  display: flex;
+  justify-content: space-around;
+  width: 25vw;
+}
+
+input {
+  margin: 5px;
+  text-align: center;
+}
+label {
+  margin: 5px;
+}
+input[type=text]:focus {
+  background-color: #508a8b;
+}
+.header-links {
+	box-shadow: 0px 10px 14px -7px #276873;
+	background:linear-gradient(to bottom, #e4c49b 5%, #f8dab4 100%);
+	background-color:#0f8cab;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#508a8b;
+	font-family:Arial;
+	font-size:1vw;
+	font-weight:bold;
+	padding: .5vw;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #f8dab4 5%, #e4c49b 100%);
+	background-color:#f8dab4;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.profile {
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+.profile-crud {
+  display: flex;
+  justify-content: space-around;
+}
+.profile-details {
+  text-align: left;
+  width: 30vw;
+}
+.profile-pic {
+  max-width: 25vw;
+  size: cover;
+}
+.saved-trail-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: auto;
+  justify-content: center;
+}
+.user-saved-trials {
+  width: 30vw;
+  text-decoration: none;
+  margin: 15px;
+}
+.saved-img {
+  width: 10vw;
+}
+.trail-container {
+  max-width: 60%;
+  margin: auto;
+  height: 100%;
+}
+
+.search-trails {
+  flex-direction: column;
+  max-height: 20vh;
+}
+
+@media only screen and (max-width: 450px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+
+  #header {
+    background: rgb(63, 63, 63);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    width: 100vw;
+    padding: 30px 0px;
+    margin: 0;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
 }

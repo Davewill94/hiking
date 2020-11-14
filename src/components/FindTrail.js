@@ -29,7 +29,7 @@ class FindTrail extends Component {
                 {this.state.location === '' ?
                     <div>
                         <p>Waiting for location</p>
-                        <form onSubmit={(e) => this.props.findAllTrails(e, this.state) }>
+                        <form className="search-trails"onSubmit={(e) => this.props.findAllTrails(e, this.state) }>
                             <label for="locaton">Location: </label>
                             <input type="text" name='location' value={this.state.location} onChange={this.handleChange} />
                             <label for="range">Range(mi): </label>
@@ -39,7 +39,7 @@ class FindTrail extends Component {
                     </div>
 
                 :
-                    <form onSubmit={(e) => this.props.findAllTrails(e, this.state) }>
+                    <form className="search-trails" onSubmit={(e) => this.props.findAllTrails(e, this.state) }>
                         <label for="locaton">Location: </label>
                         <input type="text" name='location' value={this.state.location} onChange={this.handleChange} />
                         <label for="range">Range(mi): </label>
