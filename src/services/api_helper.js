@@ -75,10 +75,15 @@ export const postSavedTrails = async (data) => {
 //====================== Reviews ==========================
 
 export const getAllReviews = async (id) => {
-    const resp = await api.get(`/review/all`);
+    const resp = await api.get(`/reviews/all`);
     return resp.data;
 }
 
 export const destroyReview = async (reviewId) => {
-    await api.delete(`/review/${reviewId}`)
+    await api.delete(`/reviews/${reviewId}`)
+}
+
+export const postReview = async (postData) => {
+    console.log(postData)
+    await api.post(`/reviews/create`, postData)
 }

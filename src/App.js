@@ -11,12 +11,14 @@ import { createUser, loginUser,
           verifyUser, destroyProfile, 
           putProfile, getSavedTrails,
           destroySavedTrail,
-          getAllReviews, destroyReview
+          getAllReviews, destroyReview,
+          postReview
         } from './services/api_helper';
 import ProfileContainer from './components/ProfileContainer';
 import ProfilePage from './components/ProfilePage';
 import UpdateProfilePage from './components/UpdateProfilePage';
 import TrailsContainer from './components/TrailsContainer';
+import ReviewCreateForm from './components/ReviewCreateForm';
 
 class App extends Component {
   constructor(props) {
@@ -101,8 +103,20 @@ class App extends Component {
   }
 
   deleteReview = async (reviewId) => {
-     await destroyReview(reviewId)
-     this.allReviews();
+    await destroyReview(reviewId)
+    await this.allReviews();
+  }
+
+  createReview = async (e, reviewData) => {
+    e.preventDefault();
+    reviewData.rating = parseInt(reviewData.rating)
+    reviewData.userId = parseInt(reviewData.userId)
+    reviewData.trailId = parseInt(reviewData.trailId)
+    console.log(reviewData)
+    await postReview(reviewData)
+    await this.allReviews()
+
+    this.props.history.push(`/trails/${reviewData.trailId}/saved`)
   }
 
   componentDidMount() {
@@ -159,6 +173,13 @@ class App extends Component {
                             userSavedTrails={this.state.userSavedTrails}
                             reviews={this.state.allTrailsReviews}
                             deleteReview={this.deleteReview}
+          />
+        )} />
+        <Route path="/reviews/:userId/:trailId/create" render={(props) => (
+          <ReviewCreateForm 
+              createReview={this.createReview}
+              trailId={props.match.params.trailId}
+              userId={props.match.params.userId}
           />
         )} />
       </div>

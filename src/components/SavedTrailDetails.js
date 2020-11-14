@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function SavedTrailDetails (props) {
     const currentTrail = props.trails.find(trail => trail.id===parseInt(props.trailId))
     const currentReviews = props.reviews.filter(review => review.trailId===parseInt(props.trailId))
-    console.log(currentReviews)
+
     return (
         <div className="trip-detials">
             <h3>{currentTrail.title}</h3>
@@ -20,12 +20,15 @@ function SavedTrailDetails (props) {
                     <div className="review-container" key={idx}>
                         <h4>{review.review}</h4>
                         <p>{review.rating}/5</p>
-                        {this.props.userId === review.userId && 
+                        {props.userId === review.userId && 
                             <button onClick={()=> props.deleteReview(review.id)}>Delete</button>
                         }
                     </div>
 
             )}
+            <Link to={`/reviews/${props.userId}/${currentTrail.id}/create`}>
+                Create A New Review
+            </Link>
         </div>
     )
 }
