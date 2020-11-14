@@ -12,13 +12,14 @@ import { createUser, loginUser,
           putProfile, getSavedTrails,
           destroySavedTrail,
           getAllReviews, destroyReview,
-          postReview
+          postReview, putReview
         } from './services/api_helper';
-import ProfileContainer from './components/ProfileContainer';
+
 import ProfilePage from './components/ProfilePage';
 import UpdateProfilePage from './components/UpdateProfilePage';
 import TrailsContainer from './components/TrailsContainer';
 import ReviewCreateForm from './components/ReviewCreateForm';
+import ReviewEditForm from './components/ReviewEditForm';
 
 class App extends Component {
   constructor(props) {
@@ -96,7 +97,6 @@ class App extends Component {
   }
   allReviews = async () => {
     const allTrailsReviews = await getAllReviews()
-    console.log(allTrailsReviews)
     this.setState({
       allTrailsReviews
     })
@@ -112,8 +112,19 @@ class App extends Component {
     reviewData.rating = parseInt(reviewData.rating)
     reviewData.userId = parseInt(reviewData.userId)
     reviewData.trailId = parseInt(reviewData.trailId)
-    console.log(reviewData)
+
     await postReview(reviewData)
+    await this.allReviews()
+
+    this.props.history.push(`/trails/${reviewData.trailId}/saved`)
+  }
+  editReview = async (e, reviewData) => {
+    e.preventDefault();
+    reviewData.rating = parseInt(reviewData.rating)
+    reviewData.userId = parseInt(reviewData.userId)
+    reviewData.trailId = parseInt(reviewData.trailId)
+
+    await putReview(reviewData)
     await this.allReviews()
 
     this.props.history.push(`/trails/${reviewData.trailId}/saved`)
@@ -181,6 +192,15 @@ class App extends Component {
               trailId={props.match.params.trailId}
               userId={props.match.params.userId}
           />
+        )} />
+        <Route path="/reviews/:userId/:trailId/edit/:reviewId" render={(props) => (
+            <ReviewEditForm 
+                allTrailsReviews={this.state.allTrailsReviews}
+                editReview={this.editReview}
+                trailId={props.match.params.trailId}
+                userId={props.match.params.userId}
+                reviewId={props.match.params.reviewId}
+            />
         )} />
       </div>
     );

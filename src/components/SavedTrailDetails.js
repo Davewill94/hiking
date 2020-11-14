@@ -21,7 +21,12 @@ function SavedTrailDetails (props) {
                         <h4>{review.review}</h4>
                         <p>{review.rating}/5</p>
                         {props.userId === review.userId && 
-                            <button onClick={()=> props.deleteReview(review.id)}>Delete</button>
+                            <div className="review-crud">
+                                <button onClick={()=> props.deleteReview(review.id)}>Delete</button>
+                                <Link to={`/reviews/${props.userId}/${currentTrail.id}/edit/${review.id}`}>
+                                    Edit Review
+                                </Link>
+                            </div>
                         }
                     </div>
 

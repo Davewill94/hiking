@@ -84,6 +84,10 @@ export const destroyReview = async (reviewId) => {
 }
 
 export const postReview = async (postData) => {
-    console.log(postData)
     await api.post(`/reviews/create`, postData)
+}
+
+export const putReview = async (postData) => {
+    console.log(postData)
+    await api.put(`/reviews/${postData.id}`, postData)
 }
