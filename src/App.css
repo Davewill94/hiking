@@ -4,7 +4,7 @@
   background-color: #b5cac1;
 }
 #homepage {
-    height: 60vh;
+    height: 90vh;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -118,6 +118,11 @@ input[type=text]:focus {
 .search-trails {
   flex-direction: column;
   max-height: 20vh;
+}
+
+.all-show {
+  overflow:scroll;
+  max-height: 90%;
 }
 
 @media only screen and (max-width: 450px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {

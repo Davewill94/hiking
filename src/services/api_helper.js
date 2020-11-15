@@ -50,25 +50,28 @@ export const getSavedTrails = async(id) => {
 }
 
 export const destroySavedTrail = async(userId, trailId) => {
-     await api.delete(`/profile/${userId}/${trailId}`)
+     await api.delete(`/profile/${userId}/${trailId}`);
 }
 
 //====================== Trails ==========================
 
 export const bulkPostTrails = async (trails) => {
-    await api.post(`/trails/bulk`, trails)
+    await api.post(`/trails/bulk`, trails);
 }
 
 export const getTrail = async (trailId) => {
-    // console.log(trailId)
     const resp = await api.get(`/trails/${trailId}`);
-    console.log(resp.data)
     return resp.data;
 }
 
 export const postSavedTrails = async (data) => {
     await api.post('/profile/saveTrail', data);
 } 
+
+export const getAllTrails = async () => {
+    const resp = await api.get('/trails/all');
+    return resp.data
+}
 
 
 

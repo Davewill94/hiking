@@ -12,7 +12,8 @@ import { createUser, loginUser,
           putProfile, getSavedTrails,
           destroySavedTrail,
           getAllReviews, destroyReview,
-          postReview, putReview
+          postReview, putReview,
+          getAllTrails
         } from './services/api_helper';
 
 import ProfilePage from './components/ProfilePage';
@@ -29,6 +30,7 @@ class App extends Component {
       currentUser: null,
       userSavedTrails: null,
       allTrailsReviews: null,
+      allTrails: null,
       hasMounted: false
     }
   }
@@ -40,6 +42,7 @@ class App extends Component {
     localStorage.setItem("currentUser", JSON.stringify(currentUser))
     this.props.history.push(`/profile/${currentUser.id}`);
     this.getUsersTrails();
+    this.getEveryTrail();
   }
   
   handleRegister = async (e, registerData) => {
@@ -47,6 +50,7 @@ class App extends Component {
     const currentUser = await createUser(registerData);
     this.setState({currentUser});
     this.props.history.push(`/profile/${currentUser.id}`);
+    this.getEveryTrail();
   }
   
   handleVerify = async () => {
@@ -55,6 +59,7 @@ class App extends Component {
       this.setState({ currentUser });
       this.props.history.push(`/profile/${currentUser.id}`);
     }
+    this.getEveryTrail();
   }
 
   handleLogout = () => {
@@ -157,6 +162,13 @@ class App extends Component {
     }
   }
 
+  getEveryTrail = async ()=> {
+    const allTrails = await getAllTrails()
+    this.setState({
+      allTrails
+    })
+  }
+
   componentDidMount() {
     this.handleVerify();
     this.getUsersTrails();
@@ -182,7 +194,9 @@ class App extends Component {
         /> 
 
           <Route exact path='/'>
-            <HomePage currentUser={this.state.currentUser}/>
+            <HomePage currentUser={this.state.currentUser}
+                      allTrails={this.state.allTrails}
+            />
           </Route> 
     
         <Route path="/login" render={() => (
