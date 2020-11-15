@@ -1,14 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Weather from './Weather';
 
 function SavedTrailDetails (props) {
+
     const currentTrail = props.trails.find(trail => trail.id===parseInt(props.trailId))
     const currentReviews = props.reviews.filter(review => review.trailId===parseInt(props.trailId))
-
+    if(!props.weather) {
+       props.getWeather(currentTrail.lat, currentTrail.lng); 
+    }
+    
     return (
         <div className="trip-detials">
             <h3>{currentTrail.title}</h3>
             <img src={currentTrail.image} alt="Sorry no image" />
+            {props.weather && <Weather weather={props.weather}/> }
             <p>{currentTrail.description}</p>
             <div className="trip-sub-details" >
                 <p>{currentTrail.type}</p>

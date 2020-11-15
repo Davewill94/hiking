@@ -10,7 +10,7 @@ import FindTrail from './FindTrail';
 import AllTrailsShow from './AllTrailsShow';
 import TrailDetails from './TrailDetails';
 import SavedTrailDetails from './SavedTrailDetails';
-import TrailShow from './TrailShow';
+
 
 require ('dotenv').config();
 
@@ -23,7 +23,8 @@ class TrailsContainer extends Component {
             lng:"",
             location: '',
             range: 5,
-            trails: []
+            trails: [],
+            weather: null
         }
     }
 
@@ -68,14 +69,13 @@ class TrailsContainer extends Component {
     }
 
     findAllTrails = async (e, newLocation) => {
-        // console.log(newLocation)
-        // console.log(this.state.location)
         e.preventDefault();
         let response
         if(newLocation.location===this.state.location) {
             response = await axios.get(
                 `https://www.hikingproject.com/data/get-trails?lat=${this.state.lat}&lon=${this.state.lng}&maxDistance=${newLocation.range}&key=200969679-32371fdf01a17cc4109f3f3b343a8185`
             )
+            this.getWeather(this.state.lat, this.state.lng);
         } else {
             let newResp = await this.newLatLng(newLocation.location);
             let newLat = newResp.data.results[0].locations[0].latLng.lat;
@@ -83,6 +83,7 @@ class TrailsContainer extends Component {
             response = await axios.get(
                 `https://www.hikingproject.com/data/get-trails?lat=${newLat}&lon=${newLng}&maxDistance=${newLocation.range}&key=200969679-32371fdf01a17cc4109f3f3b343a8185`
             )
+            this.getWeather(newLat, newLng);
         }
         let bulkTrails =[];
         response.data.trails.forEach(element => {
@@ -110,15 +111,26 @@ class TrailsContainer extends Component {
     }
 
     saveTrail = async (trailId) => {
-        // console.log(trailId)
+
         const foundTrail = await getTrail(trailId);
-        // console.log(foundTrail)
         const savedTrailData = {
             userId: this.props.userId,
             trailId: foundTrail.id
         }
 
         await postSavedTrails(savedTrailData);
+    }
+    getWeather = async (lat, lng) => {
+        console.log(lat, lng)
+
+        const weather = await axios.get(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=890f7e4f2e7832ce6f45fef03dabb499`
+        )
+        console.log(weather)
+
+        this.setState({
+            weather: weather.data
+        })
     }
 
 
@@ -149,6 +161,8 @@ class TrailsContainer extends Component {
                                         reviews={this.props.reviews}
                                         userId={this.props.userId}
                                         deleteReview={this.props.deleteReview}
+                                        weather={this.state.weather}
+                                        getWeather={this.getWeather}
                     />
                 )} />
                 <Route path="/trails/:id/unsaved" render={(props) => (
@@ -156,6 +170,7 @@ class TrailsContainer extends Component {
                                     trailId={props.match.params.id}
                                     flag={props.match.params.flag}
                                     saveTrail={this.saveTrail}
+                                    weather={this.state.weather}
                     />
                 )} />
             </div>

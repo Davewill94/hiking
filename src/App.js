@@ -28,7 +28,8 @@ class App extends Component {
     this.state = {
       currentUser: null,
       userSavedTrails: null,
-      allTrailsReviews: null
+      allTrailsReviews: null,
+      hasMounted: false
     }
   }
 
@@ -36,6 +37,7 @@ class App extends Component {
     e.preventDefault();
     const currentUser = await loginUser(loginData);
     this.setState({currentUser});
+    localStorage.setItem("currentUser", JSON.stringify(currentUser))
     this.props.history.push(`/profile/${currentUser.id}`);
     this.getUsersTrails();
   }
@@ -57,6 +59,9 @@ class App extends Component {
 
   handleLogout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userSavedTrails');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('allTrailsReviews');
     this.props.history.push('/login');
     this.setState({
       currentUser: null,
@@ -82,6 +87,7 @@ class App extends Component {
   getUsersTrails = async () => {
     if(this.state.currentUser) {
       const userSavedTrails = await getSavedTrails(this.state.currentUser.id);
+      localStorage.setItem("userSavedTrails", JSON.stringify(userSavedTrails.savedtrails))
       this.setState({ userSavedTrails: userSavedTrails.savedtrails })
     }
   }
@@ -96,7 +102,8 @@ class App extends Component {
     this.props.history.push(`/profile/${userId}`)
   }
   allReviews = async () => {
-    const allTrailsReviews = await getAllReviews()
+    const allTrailsReviews = await getAllReviews();
+    localStorage.setItem("allTrailsReviews", JSON.stringify(allTrailsReviews))
     this.setState({
       allTrailsReviews
     })
@@ -130,12 +137,41 @@ class App extends Component {
     this.props.history.push(`/trails/${reviewData.trailId}/saved`)
   }
 
+  saveStateToLocalStorage = () => {
+    for (let key in this.state) {
+      localStorage.setItem(key, JSON.stringify(this.state[key]))
+    }
+  }
+
+  populateStateFromLocalStorage = () => {
+    for (let key in this.state) {
+      if (localStorage.hasOwnProperty(key)) {
+        let value = localStorage.getItem(key);
+        try {
+          value = JSON.parse(value);
+          this.setState({ [key]: value });
+        } catch (e) {
+          this.setState({ [key]: value });
+        }
+      }
+    }
+  }
+
   componentDidMount() {
     this.handleVerify();
     this.getUsersTrails();
     this.allReviews();
+    this.populateStateFromLocalStorage();
+    this.setState({
+      hasMounted: true
+    })
   }
 
+  componentWillUnmount() {
+    window.removeEventListener(
+      "beforeunload",
+    );
+  }
 
   render() {
     return (
@@ -145,17 +181,17 @@ class App extends Component {
                 handleLogout={this.handleLogout}
         /> 
 
-        {!this.state.currentUser && 
           <Route exact path='/'>
             <HomePage currentUser={this.state.currentUser}/>
           </Route> 
-        }
+    
         <Route path="/login" render={() => (
           <Login handleLogin={this.handleLogin}/>
         )} />
         <Route path="/register" render={() => (
           <SignUp handleRegister={this.handleRegister} />
         )} />
+        {this.state.hasMounted && <>
         <Route exact path='/profile/:id' render={() => (
           <ProfilePage currentUser={this.state.currentUser} deleteProfile={this.deleteProfile}/>
         )} />
@@ -194,6 +230,7 @@ class App extends Component {
                 reviewId={props.match.params.reviewId}
             />
         )} />
+        </>}
       </div>
     );
   }

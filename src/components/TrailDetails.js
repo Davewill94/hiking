@@ -1,4 +1,5 @@
 import React from 'react';
+import Weather from './Weather';
 
 
 function TrailDetails(props) {
@@ -8,6 +9,7 @@ function TrailDetails(props) {
         <div className="trip-detials">
             <h3>{currentTrail.name}</h3>
             <img src={currentTrail.imgMedium} alt="Sorry no image" />
+            <Weather weather={props.weather}/>
             <p>{currentTrail.summary}</p>
             <div className="trip-sub-details" >
                 <p>{currentTrail.type}</p>
