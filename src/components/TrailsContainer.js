@@ -124,7 +124,7 @@ class TrailsContainer extends Component {
         console.log(lat, lng)
 
         const weather = await axios.get(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=890f7e4f2e7832ce6f45fef03dabb499`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=890f7e4f2e7832ce6f45fef03dabb499&units=imperial`
         )
         console.log(weather)
 
