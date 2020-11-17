@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import {bulkPostTrails, getTrail, postSavedTrails} from '../services/api_helper';
 
@@ -24,7 +24,8 @@ class TrailsContainer extends Component {
             location: '',
             range: 5,
             trails: [],
-            weather: null
+            weather: null,
+            displayMap: true
         }
     }
 
@@ -121,15 +122,17 @@ class TrailsContainer extends Component {
         await postSavedTrails(savedTrailData);
     }
     getWeather = async (lat, lng) => {
-        console.log(lat, lng)
-
         const weather = await axios.get(
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=890f7e4f2e7832ce6f45fef03dabb499&units=imperial`
         )
-        console.log(weather)
 
         this.setState({
             weather: weather.data
+        })
+    }
+    showHideMap = (e) => {
+        this.setState({
+            displayMap: !this.state.displayMap
         })
     }
 
@@ -163,6 +166,9 @@ class TrailsContainer extends Component {
                                         deleteReview={this.props.deleteReview}
                                         weather={this.state.weather}
                                         getWeather={this.getWeather}
+                                        weather={this.state.weather}
+                                        showMap={this.state.displayMap}
+                                        map={this.showHideMap}
                     />
                 )} />
                 <Route path="/trails/:id/unsaved" render={(props) => (
@@ -171,6 +177,8 @@ class TrailsContainer extends Component {
                                     flag={props.match.params.flag}
                                     saveTrail={this.saveTrail}
                                     weather={this.state.weather}
+                                    showMap={this.state.displayMap}
+                                    map={this.showHideMap}
                     />
                 )} />
             </div>

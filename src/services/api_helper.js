@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "https://peaceful-wildwood-15287.herokuapp.com/"
+    baseURL: "https://peaceful-wildwood-15287.herokuapp.com"
 })
 // https://peaceful-wildwood-15287.herokuapp.com
 // "http://localhost:3001"
@@ -18,7 +18,11 @@ export const verifyUser = async () => {
 }
 
 export const loginUser = async (loginData) => {
+    console.log("Made right before login")
     const resp = await api.post('/auth/login', loginData);
+    if(resp.data.message) {
+        return resp.data.message
+    }
     localStorage.setItem('authToken', resp.data.token);
     api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
     return resp.data.user;
@@ -28,7 +32,6 @@ export const createUser = async (registerData) => {
     const resp = await api.post('/auth/signup', registerData);
     localStorage.setItem('authToken', resp.data.token);
     api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
-    console.log(resp)
     return resp.data.user;
 }
 

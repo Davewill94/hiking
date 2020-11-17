@@ -89,6 +89,7 @@ input[type=text]:focus {
 }
 .profile-pic {
   max-width: 25vw;
+  object-fit: cover;
   size: cover;
 }
 .saved-trail-wrapper {
@@ -105,9 +106,13 @@ input[type=text]:focus {
 }
 .saved-img {
   width: 10vw;
+  height: 10vw;
+  object-fit: cover;
 }
 .search-img {
   width: 20vw;
+  height: 20vw;
+  object-fit: cover;
 }
 .trail-container {
   max-width: 60%;
@@ -121,14 +126,14 @@ input[type=text]:focus {
 }
 
 .all-show {
-  overflow:scroll;
+  overflow-y: scroll;
   max-height: 90%;
 }
 
 .weather-ribbon {
   display: flex;
   border: 2px solid #000;
-  width: 50vw;
+  width: calc(55vw - 4px);
   margin: auto;
   justify-content: space-around;
   max-height: 15vh;
@@ -143,7 +148,7 @@ input[type=text]:focus {
 .temps, .wind, .gen {
   border-left: 2px solid #a9a6a2;
   background-color: rgba(248,219,180,.8588235294117647);
-  width: 25%;
+  width: 22%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,8 +167,40 @@ input[type=text]:focus {
   display: flex;
   align-content: center;
   background-color:  #f8dbb4db;
-  width: 25%;    
+  width: 34%;    
   align-items: center;
+}
+
+.trail-show{
+  display: flex;
+  width: 55vw;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.trail-show > img {
+  width: 50%;
+  height: 300px;
+  object-fit: cover;
+}
+.trip-sub-details {
+  width: 50%;
+}
+.trip-sub-details > p {
+  text-align: left;
+  padding-left: 5%;
+}
+iframe {
+  width:100%;
+  max-width: 1200px;
+  height: 410px;
+  border:none;
+}
+.trail-map {
+  width: 55vw;
+  display: flex;
+  align-content: center;
+  margin: auto;
 }
 
 @media only screen and (max-width: 450px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {

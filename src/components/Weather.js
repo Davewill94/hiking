@@ -10,19 +10,19 @@ function Weather(props) {
             </div>
             <div className="temps">
                 <h4>Temps:</h4>
-                <p>Today's low of {props.weather.main.temp_min}F</p>
-                <p>Today's high of {props.weather.main.temp_max}F</p>
-                <p>Current Temp is {props.weather.main.temp}F</p> 
+                <p>Today's low of {props.weather.main.temp_min.toFixed(1)}F</p>
+                <p>Today's high of {props.weather.main.temp_max.toFixed(1)}F</p>
+                <p>Current Temp is {props.weather.main.temp.toFixed(1)}F</p> 
             </div>
             <div className='wind'>
                 <h4>Winds</h4>
-                <p>Speed of {props.weather.wind.speed}mph</p>
+                <p>Speed of {props.weather.wind.speed.toFixed(1)}mph</p>
                 {props.weather.wind.gust &&
-                 <p>Gusts of {props.weather.wind.gust}mph</p>
+                 <p>Gusts of {props.weather.wind.gust.toFixed(1)}mph</p>
                 }
             </div>
             <div className="gen">
-                <p>Feels Like {props.weather.main.feels_like}</p>
+                <p>Feels Like {props.weather.main.feels_like.toFixed(1)}F</p>
             </div>
         </div>
     )

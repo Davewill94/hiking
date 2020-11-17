@@ -40,7 +40,7 @@ class ReviewEditForm extends Component {
             <form onSubmit={(e) => this.props.editReview(e, this.state)}>
                 <lable for="review">Thoughts?: </lable>
                 <input type="text" name="review" value={this.state.review} onChange={this.handleChange} />
-                <lable for='rating'>Rating (0 to 5):</lable>
+                <lable for='rating'>Rating (1 to 5):</lable>
                 <input type="number" name="rating" min="1" max="5" value={this.state.rating} onChange={this.handleChange} />
                 <input type="submit" value="Post Review" />
             </form>

@@ -31,18 +31,27 @@ class App extends Component {
       userSavedTrails: null,
       allTrailsReviews: null,
       allTrails: null,
-      hasMounted: false
+      hasMounted: false,
+      logginError: null
     }
   }
 
   handleLogin = async (e, loginData) => {
     e.preventDefault();
     const currentUser = await loginUser(loginData);
-    this.setState({currentUser});
-    localStorage.setItem("currentUser", JSON.stringify(currentUser))
-    this.props.history.push(`/profile/${currentUser.id}`);
-    this.getUsersTrails();
-    this.getEveryTrail();
+    if(currentUser==="Error: Incorrect Username or Password") {
+      this.setState({
+        logginError: currentUser
+      })
+      this.props.history.push('/login');
+
+    } else {
+      this.setState({currentUser});
+      localStorage.setItem("currentUser", JSON.stringify(currentUser))
+      this.props.history.push(`/profile/${currentUser.id}`);
+      this.getUsersTrails();
+      this.getEveryTrail();
+    }
   }
   
   handleRegister = async (e, registerData) => {
@@ -70,7 +79,8 @@ class App extends Component {
     this.props.history.push('/login');
     this.setState({
       currentUser: null,
-      userSavedTrails: null
+      userSavedTrails: null,
+      logginError: null
     });
 
   }
@@ -200,7 +210,7 @@ class App extends Component {
           </Route> 
     
         <Route path="/login" render={() => (
-          <Login handleLogin={this.handleLogin}/>
+          <Login handleLogin={this.handleLogin} error={this.state.logginError}/>
         )} />
         <Route path="/register" render={() => (
           <SignUp handleRegister={this.handleRegister} />
