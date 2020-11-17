@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 import { Route } from 'react-router-dom';
@@ -74,7 +73,7 @@ class TrailsContainer extends Component {
         let response
         if(newLocation.location===this.state.location) {
             response = await axios.get(
-                `https://www.hikingproject.com/data/get-trails?lat=${this.state.lat}&lon=${this.state.lng}&maxDistance=${newLocation.range}&key=200969679-32371fdf01a17cc4109f3f3b343a8185`
+                `https://www.hikingproject.com/data/get-trails?lat=${this.state.lat}&lon=${this.state.lng}&maxDistance=${newLocation.range}&key=${process.env.HIKING_PROJECT_KEY}`
             )
             this.getWeather(this.state.lat, this.state.lng);
         } else {
@@ -82,7 +81,7 @@ class TrailsContainer extends Component {
             let newLat = newResp.data.results[0].locations[0].latLng.lat;
             let newLng = newResp.data.results[0].locations[0].latLng.lng;
             response = await axios.get(
-                `https://www.hikingproject.com/data/get-trails?lat=${newLat}&lon=${newLng}&maxDistance=${newLocation.range}&key=200969679-32371fdf01a17cc4109f3f3b343a8185`
+                `https://www.hikingproject.com/data/get-trails?lat=${newLat}&lon=${newLng}&maxDistance=${newLocation.range}&key=${process.env.HIKING_PROJECT_KEY}`
             )
             this.getWeather(newLat, newLng);
         }
@@ -123,7 +122,7 @@ class TrailsContainer extends Component {
     }
     getWeather = async (lat, lng) => {
         const weather = await axios.get(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=890f7e4f2e7832ce6f45fef03dabb499&units=imperial`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.WEATHER_KEY}&units=imperial`
         )
 
         this.setState({

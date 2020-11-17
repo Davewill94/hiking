@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 const HomePage = (props) => {
-    console.log(props)
+
     return(
         <div id="homepage">
             {!props.currentUser ?

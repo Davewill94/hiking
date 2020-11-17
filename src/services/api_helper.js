@@ -18,7 +18,6 @@ export const verifyUser = async () => {
 }
 
 export const loginUser = async (loginData) => {
-    console.log("Made right before login")
     const resp = await api.post('/auth/login', loginData);
     if(resp.data.message) {
         return resp.data.message
@@ -94,6 +93,5 @@ export const postReview = async (postData) => {
 }
 
 export const putReview = async (postData) => {
-    console.log(postData)
     await api.put(`/reviews/${postData.id}`, postData)
 }

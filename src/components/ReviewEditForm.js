@@ -24,7 +24,7 @@ class ReviewEditForm extends Component {
                     &&review.id===parseInt(this.props.reviewId)
                 )
             )
-            console.log(currentReview)
+
         this.setState({
             userId: this.props.userId,
             trailId: this.props.trailId,

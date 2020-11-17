@@ -4,7 +4,7 @@ import Weather from './Weather';
 
 function TrailDetails(props) {
     const currentTrail = props.trails.find(trail => trail.id===parseInt(props.trailId))
-    console.log(currentTrail)
+
     return (
         <div className="trip-detials">
             <h3>{currentTrail.name}</h3>

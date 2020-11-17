@@ -4,8 +4,6 @@ import { Route, withRouter } from 'react-router-dom';
 import ProfilePage from './ProfilePage';
 import UpdateProfilePage from './UpdateProfilePage';
 
-// import {profileIndex} from '../services/api_helper';
-
 class ProfileContainer extends Component {
     constructor(props) {
         super(props)
@@ -15,12 +13,9 @@ class ProfileContainer extends Component {
         }
     }
     componentDidMount() {
-        console.log(this.props.currentUser);
         this.setState({
             profile: this.props.currentUser
         })
-
-        console.log(this.state.profile);
     }
 
 

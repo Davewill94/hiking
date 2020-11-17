@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Weather from './Weather';
 
 function SavedTrailDetails (props) {
-    console.log('made it')
+
     const currentTrail = props.trails.find(trail => trail.id===parseInt(props.trailId))
     const currentReviews = props.reviews.filter(review => review.trailId===parseInt(props.trailId))
     if(!props.weather) {

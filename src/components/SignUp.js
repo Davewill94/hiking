@@ -24,9 +24,9 @@ class SignUp extends Component {
         return(
             <form onSubmit={(e)=> this.props.handleRegister(e, this.state)}>
                 <label for='name'>User Name:</label>
-                <input type='text' name='name' placeholder="User Name" onChange={this.handleChange}/>
+                <input type='text' name='name' placeholder="User Name" onChange={this.handleChange} required/>
                 <label for='password'>Password:</label>
-                <input type="password" name="password" placeholder="Password Here" onChange={this.handleChange}/>
+                <input type="password" name="password" placeholder="Password Here" onChange={this.handleChange} required/>
                 <label for='email'>Email:</label>
                 <input type="text" name="email" placeholder="Email Here" onChange={this.handleChange}/>
                 <label for='location'>From:</label>
