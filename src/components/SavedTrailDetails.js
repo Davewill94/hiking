@@ -23,6 +23,9 @@ function SavedTrailDetails (props) {
                     <p>Length:     {currentTrail.length} miles</p>
 
                     <label onClick={(e) => props.map(e)}>{props.showMap?"Hide Trail Map":"See Trail Map" }</label> 
+                    <Link to={`/reviews/${props.userId}/${currentTrail.id}/create`}>
+                        Create A New Review
+                    </Link>
                 </div>
             </div>
             {props.weather && <Weather weather={props.weather}/> }
@@ -33,25 +36,22 @@ function SavedTrailDetails (props) {
                     </iframe>
                 </div>
             }
-
-            {currentReviews.map((review, idx) => 
-                    <div className="review-container" key={idx}>
-                        <h4>{review.review}</h4>
-                        <p>{review.rating}/5</p>
-                        {props.userId === review.userId && 
-                            <div className="review-crud">
-                                <button onClick={()=> props.deleteReview(review.id)}>Delete</button>
-                                <Link to={`/reviews/${props.userId}/${currentTrail.id}/edit/${review.id}`}>
-                                    Edit Review
-                                </Link>
-                            </div>
-                        }
-                    </div>
-
-            )}
-            <Link to={`/reviews/${props.userId}/${currentTrail.id}/create`}>
-                Create A New Review
-            </Link>
+            <div className="review-container">
+                {currentReviews.map((review, idx) => 
+                        <div className="individual-review" key={idx}>
+                            <h4>{review.review}</h4>
+                            <p>{review.rating}/5</p>
+                            {props.userId === review.userId && 
+                                <div className="review-crud">
+                                    <button onClick={()=> props.deleteReview(review.id)}>Delete</button>
+                                    <Link to={`/reviews/${props.userId}/${currentTrail.id}/edit/${review.id}`}>
+                                        Edit Review
+                                    </Link>
+                                </div>
+                            }
+                        </div>
+                )}
+            </div>
         </div>
     )
 }

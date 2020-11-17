@@ -11,14 +11,14 @@ const Header = (props) => {
             </div>
             {props.currentUser &&
                 <nav className='header-nav'>
-                    <Link to='/' className='header-links'>Home</Link>
-                    <Link to='/trails' className='header-links'>Find Trails</Link>
-                    <Link className='header-links'
+                    <Link to='/' className='header-links-nav'>Home</Link>
+                    <Link to='/trails' className='header-links-nav'>Find Trails</Link>
+                    <Link className='header-links-nav'
                         to={`/profile/${props.currentUser.id}`} 
                         onClick={()=> props.getSaved()}>
                         To Profile
                     </Link>
-                    <button className='header-links'
+                    <button className='header-links-nav'
                             onClick={()=>props.handleLogout()}>
                         Logout
                     </button>

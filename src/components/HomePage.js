@@ -20,11 +20,11 @@ const HomePage = (props) => {
                 {props.allTrails.map((trail, idx) => (
                     <div className="user-saved-trials header-links" key={idx}>
                             <div className="trail-container">
-                            <Link to={`/trails/${trail.id}/saved`} >
+                            {/* <Link to={`/trails/${trail.id}/saved`} > */}
                                 <h3>{trail.title}</h3>
                                 <img className="saved-img"src={trail.image} alt={trail.title} />
                                 <p>{trail.description}</p>
-                            </Link>
+                            {/* </Link> */}
                         </div>
                     </div>
                 ))}
