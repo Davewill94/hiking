@@ -6,15 +6,15 @@ Sei Capstone project
 Take-a-hike allows users to find hiking trails near them or a specified location. Users can save trails to their profile for later viewing. 
 
 ## Project Links
-React app deployed [Take-a-Hike](https://take-a-hike.surge.sh/).
-Front end repo [here](https://github.com/Davewill94/hiking).
-Back end deployed [here](https://peaceful-wildwood-15287.herokuapp.com).
-Back end repo [here](https://github.com/Davewill94/take-a-hike).
+  * React app deployed [Take-a-Hike](https://take-a-hike.surge.sh/).
+  * Front end repo [here](https://github.com/Davewill94/hiking).
+  * Back end deployed [here](https://peaceful-wildwood-15287.herokuapp.com).
+  * Back end repo [here](https://github.com/Davewill94/take-a-hike).
 
 ### External Apis Used
-Trail data obtained from - [The Hiking Project](https://www.hikingproject.com/)
-Weather data obtained from - [Open Weather Map](https://openweathermap.org/api)
-Geolocation data obtained from - [Map Quest](www.mapquestapi.com)
+  * Trail data obtained from - [The Hiking Project](https://www.hikingproject.com/)
+  * Weather data obtained from - [Open Weather Map](https://openweathermap.org/api)
+  * Geolocation data obtained from - [Map Quest](www.mapquestapi.com)
 
 
 ## Wire Frames
