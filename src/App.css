@@ -314,5 +314,29 @@ iframe {
     margin-top: 0px;
     margin: auto;
   }
+  .profile-details {
+    text-align: left;
+    width: 40vw;
+  }
+  .profile-details > h2 {
+    font-size: 1em;
+  }
+  .saved-trail-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95vw;
+    margin: auto;
+    justify-content: center;
+  }
+  .user-saved-trials {
+    width: 40vw;
+    text-decoration: none;
+    margin: 5px;
+  }
+  .trail-container {
+    max-width: 95%;
+    margin: auto;
+    height: 100%;
+}
 
 }

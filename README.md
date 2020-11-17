@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# project-4 - Take-a-hike
+## Take a hike
+Sei Capstone project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Take-a-hike allows users to find hiking trails near them or a specified location. Users can save trails to their profile for later viewing. 
 
-## Available Scripts
+## Project Links
+React app deployed [Take-a-Hike](https://take-a-hike.surge.sh/).
+Front end repo [here](https://github.com/Davewill94/hiking).
+Back end deployed [here](https://peaceful-wildwood-15287.herokuapp.com).
+Back end repo [here](https://github.com/Davewill94/take-a-hike).
 
-In the project directory, you can run:
+### External Apis Used
+Trail data obtained from - [The Hiking Project](https://www.hikingproject.com/)
+Weather data obtained from - [Open Weather Map](https://openweathermap.org/api)
+Geolocation data obtained from - [Map Quest](www.mapquestapi.com)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Wire Frames
+![image](https://i.imgur.com/2WYspTg.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## ERD
+![image](https://i.imgur.com/ez8MX9d.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## MVP
+-	Users can sign up/log in. 
+-	Users have CRUD functionality on their userprofile.
+-	Trail details page shows all the needed information to decide to go on a hike.
+-	Logged in users can review/rate and like trails.
+-	Profile page displays user’s liked trails.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Post MVP
+- Integrate map that shows the location of the trail.
+- Integrate a curent weather ticker for location of trail.
+- Integrate map that shows the trail path(maybe).
+- Add image uploader for user profile picture.
+- Try to get and use users location to search for trails.
+- Add filters to allow for result filtering based on trail difficulty.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## User Stories
+- As an outdoor enthusiast I would like to know what kind of hiking trails are around me.
+- I would like to see some pictures of the hike before hand.
+- I would like to know basic trail data like how long the trail is and how hard the trail is.
+- I would like to know where the trail is.
+- I would like to be able to save liked trails so that I can view them later without having to re-search for them.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Technologies Used
+ - Heroku for database deployment
+ - Surge for front end deployment
+ - Sequelize for database creation and migration
+ - Bcrypt and Json Web Tokens for auth functions
+ - HTML, CSS, and JavaScript
