@@ -189,12 +189,6 @@ class App extends Component {
     })
   }
 
-  componentWillUnmount() {
-    // window.removeEventListener(
-    //   "beforeunload",
-    // );
-  }
-
   render() {
     return (
       <div className="App">
